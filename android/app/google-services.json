@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "571592744450",
+    "project_id": "cinta-film-analytic",
+    "storage_bucket": "cinta-film-analytic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571592744450:android:1337f4cffd5817a528d11b",
+        "android_client_info": {
+          "package_name": "com.example.cinta_film"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571592744450-qbkf06kn7klv18d49ranb0a6f3so6nao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_AK1kpVc_VK8wqzi52QfZ1ncmrp9t4oY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571592744450-qbkf06kn7klv18d49ranb0a6f3so6nao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
