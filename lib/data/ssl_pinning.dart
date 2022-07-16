@@ -6,12 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
 class ClassSSLPinning extends HttpOverrides {
-  // @override
-  // HttpClient createHttpClient(SecurityContext? context) {
-  //   return super.createHttpClient(context)
-  //     ..badCertificateCallback =
-  //         (X509Certificate cert, String host, int port) => true;
-  // }
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 
   static Future<http.Client> get _instance async =>
       _clientInstance ??= await createLEClient();
@@ -27,7 +27,6 @@ class ClassSSLPinning extends HttpOverrides {
   static Future<HttpClient> customHttpClient({
     bool isTestMode = false,
   }) async {
-    // HttpOverrides.global = new ClassSSLPinning();
     SecurityContext context = SecurityContext(withTrustedRoots: false);
 
     try {
@@ -53,9 +52,10 @@ class ClassSSLPinning extends HttpOverrides {
     } catch (error) {
       log('unexpected error $error');
     }
+    HttpOverrides.global = new ClassSSLPinning();
     HttpClient httpClient = HttpClient(context: context);
     httpClient.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
+        (X509Certificate cert, String host, int port) => false;
 
     return httpClient;
   }

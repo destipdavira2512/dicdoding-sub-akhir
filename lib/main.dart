@@ -29,8 +29,9 @@ void main() async {
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    await ClassSSLPinning.init();
     await Firebase.initializeApp();
+    await ClassSSLPinning.init();
+
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     inject.init();
 
