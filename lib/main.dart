@@ -26,18 +26,18 @@ import 'package:cinta_film/presentasi/bloc/tv_bloc.dart';
 import 'package:cinta_film/presentasi/bloc/film_bloc.dart';
 
 void main() async {
-
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     await Firebase.initializeApp();
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-    ClassSSLPinning.init();
+    await ClassSSLPinning.init();
     inject.init();
 
     runApp(MyApp());
-  },(error, stack) => FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
-  
+  },
+      (error, stack) =>
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
 }
 
 class MyApp extends StatelessWidget {
@@ -96,17 +96,11 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/home':
-              return MaterialPageRoute(builder: (_) 
-                => HomeMoviePage()
-              );
+              return MaterialPageRoute(builder: (_) => HomeMoviePage());
             case PopularMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) 
-                => PopularMoviesPage()
-              );
+              return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
             case TopRatedMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_)
-                => TopRatedMoviesPage()
-              );
+              return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
             case MovieDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -114,43 +108,30 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case '/tv':
-              return MaterialPageRoute(builder: (_) 
-                => HomeTvlsPage()
-              );
+              return MaterialPageRoute(builder: (_) => HomeTvlsPage());
             case PopularTvlsPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) 
-                => PopularTvlsPage()
-              );
+              return CupertinoPageRoute(builder: (_) => PopularTvlsPage());
             case HalamanSerialTvTerbaik.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) 
-                => HalamanSerialTvTerbaik()
-              );
+              return CupertinoPageRoute(
+                  builder: (_) => HalamanSerialTvTerbaik());
             case TvlsDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
-              return MaterialPageRoute(builder: (_) 
-                => TvlsDetailPage(id: id),
+              return MaterialPageRoute(
+                builder: (_) => TvlsDetailPage(id: id),
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) 
-                => SearchPage()
-              );
+              return CupertinoPageRoute(builder: (_) => SearchPage());
             case SearchTvlsPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) 
-                => SearchTvlsPage()
-              );
+              return CupertinoPageRoute(builder: (_) => SearchTvlsPage());
             case ClassHalamanDaftarTontonFilm.ROUTE_NAME:
-              return MaterialPageRoute( builder: (_) 
-                => ClassHalamanDaftarTontonFilm()
-              );
+              return MaterialPageRoute(
+                  builder: (_) => ClassHalamanDaftarTontonFilm());
             case ClassHalamanListSerialTv.ROUTE_NAME:
-              return MaterialPageRoute( builder: (_) 
-                => ClassHalamanListSerialTv()
-              );
-            case AboutPage.ROUTE_NAME: 
-              return MaterialPageRoute(builder: (_) 
-                => AboutPage()
-              );
+              return MaterialPageRoute(
+                  builder: (_) => ClassHalamanListSerialTv());
+            case AboutPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => AboutPage());
             default:
               return MaterialPageRoute(builder: (_) {
                 return Scaffold(
